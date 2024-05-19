@@ -1,5 +1,6 @@
 package com.paras_test_android.assignment_paras
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,19 +40,22 @@ class MainActivity : AppCompatActivity()
 
         //add clicklistener for add expenses button
         addButton.setOnClickListener {
-            Toast.makeText(this, "Add Expenses", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Going to Add Expenses", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AddExpensesActivity::class.java)
+            startActivity(intent)
         }
         //add clicklistener for show expenses button
         showButton.setOnClickListener {
-            Toast.makeText(this, "Show Expenses", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Going to Show Expenses", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ShowExpensesActivity::class.java))
         }
         //add clicklistener for edit expenses button
         editButton.setOnClickListener {
-            Toast.makeText(this, "Edit Expenses", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Going to Edit Expenses", Toast.LENGTH_SHORT).show()
         }
         //add clicklistener for statistics  expenses button
         statisticsButton.setOnClickListener {
-            Toast.makeText(this, "Show Statistics on Expenses", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Going to Statistics on Expenses", Toast.LENGTH_SHORT).show()
         }
     }
 }
