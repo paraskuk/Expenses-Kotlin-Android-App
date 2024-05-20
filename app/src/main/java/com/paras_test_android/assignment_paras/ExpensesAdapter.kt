@@ -32,7 +32,7 @@ class ExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerView.A
         val expense = expenses[position]
         holder.titleTextView.text = expense.title
         holder.amountTextView.text = expense.amount.toString()
-        // Set other properties
+
     }
 
     override fun getItemCount() = expenses.size

@@ -15,6 +15,9 @@ import kotlinx.coroutines.*
 class ShowExpensesActivity : AppCompatActivity() {
     private lateinit var expensesAdapter: ExpensesAdapter
 
+    /**
+     * Function that creates the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_expenses_activity)
@@ -26,7 +29,7 @@ class ShowExpensesActivity : AppCompatActivity() {
 
         loadExpenses()
 
-        // here we add the back button
+        // here we add the back button to have better navigation
         val backButton = findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener {
             Toast.makeText(this, "I am going back to Main Menu !", Toast.LENGTH_SHORT).show()
@@ -41,7 +44,6 @@ class ShowExpensesActivity : AppCompatActivity() {
     /**
      * Function that  handles back button to improve usability
      */
-
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
