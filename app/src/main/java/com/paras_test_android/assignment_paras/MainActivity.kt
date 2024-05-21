@@ -2,6 +2,7 @@ package com.paras_test_android.assignment_paras
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -51,8 +52,14 @@ class MainActivity : AppCompatActivity()
         }
         //add clicklistener for edit expenses button
         editButton.setOnClickListener {
-            Toast.makeText(this, "Going to Edit Expenses", Toast.LENGTH_SHORT).show()
+            try {
+                val intent = Intent(this, EditExpensesActivity::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Error starting EditExpensesActivity", e)
+            }
         }
+
         //add clicklistener for statistics  expenses button
         statisticsButton.setOnClickListener {
             Toast.makeText(this, "Going to Statistics on Expenses", Toast.LENGTH_SHORT).show()

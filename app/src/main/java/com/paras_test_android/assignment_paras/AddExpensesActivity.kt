@@ -50,7 +50,7 @@ class AddExpensesActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK // Clears previous activities except for the new main
         startActivity(intent)
-        finish() // Close  the activity
+        finish()
     }
 
 }

@@ -32,7 +32,10 @@
             android:name=".ShowExpensesActivity"
             android:label="Show all Expenses"> <!-- label for show expense activity -->
         </activity>
-
+        <activity
+            android:name=".EditExpensesActivity"
+            android:label="Edit Expenses"> <!-- label for show expense activity -->
+        </activity>
 
     </application>
 
