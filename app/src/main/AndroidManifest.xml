@@ -36,6 +36,10 @@
             android:name=".EditExpensesActivity"
             android:label="Edit Expenses"> <!-- label for show expense activity -->
         </activity>
+        <activity
+            android:name=".ShowStatisticsActivity"
+            android:label="Show Statistics on Expenses"> <!-- statistics activity -->
+        </activity>
 
     </application>
 

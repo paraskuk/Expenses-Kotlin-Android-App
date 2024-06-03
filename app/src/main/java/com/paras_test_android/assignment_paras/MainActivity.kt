@@ -63,6 +63,11 @@ class MainActivity : AppCompatActivity()
         //add clicklistener for statistics  expenses button
         statisticsButton.setOnClickListener {
             Toast.makeText(this, "Going to Statistics on Expenses", Toast.LENGTH_SHORT).show()
+
+            //Log.d("ShowStatisticsActivity", "Show Statistics button clicked")
+            val intent = Intent(this, ShowStatisticsActivity::class.java)
+            startActivity(intent)
+
         }
     }
 }

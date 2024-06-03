@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <!--tile of expense and amount of expense are displayed in a row-->
+    <!--tile of expense and amount of expense will be displayed in a row-->
     <TableRow>
         <TextView
             android:id="@+id/titleTextView"
