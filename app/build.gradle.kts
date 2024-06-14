@@ -46,6 +46,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.test:runner")
+    //androidTestImplementation("androidx.test.espresso:espresso-contrib")
+    //androidTestImplementation("androidx.test.espresso")
+    //androidTestImplementation("androidx.test:rules")
+
 
     val room_version = "2.6.1"
 
@@ -60,7 +65,6 @@ dependencies {
     //implementation "androidx.room:room-ktx:$room_version"
    // Test helpers
    testImplementation("androidx.room:room-testing:$room_version")
-
 
 
 }

@@ -59,7 +59,7 @@ class ShowStatisticsActivity : AppCompatActivity() {
                     mostFrequentTitleValue.text = ""
                     mostFrequentCategoryValue.text = ""
                     averageAmountPerCategoryValue.text = ""
-                    mostRecentExpenseValue.text = "Failed to load statistics. Please try again."
+                    mostRecentExpenseValue.text = "Failed to load statistics. Please make sure you have added expenses."
                     Toast.makeText(this@ShowStatisticsActivity, "Failed to load statistics", Toast.LENGTH_SHORT).show()
                 }
             }
