@@ -8,6 +8,7 @@ android {
     namespace = "com.paras_test_android.assignment_paras"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.paras_test_android.assignment_paras"
         minSdk = 24
@@ -16,7 +17,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
+
 
     buildTypes {
         release {
@@ -37,20 +41,19 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
+    testImplementation ("org.jetbrains.kotlin:kotlin-test-junit")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.test.ext:junit:1.1.0")
+    //androidTestImplementation("androidx.test:core-ktx")
     androidTestImplementation("androidx.test:runner")
-    //androidTestImplementation("androidx.test.espresso:espresso-contrib")
-    //androidTestImplementation("androidx.test.espresso")
-    //androidTestImplementation("androidx.test:rules")
-
+    androidTestUtil("androidx.test:orchestrator:1.1.0")
 
     val room_version = "2.6.1"
 
@@ -61,10 +64,10 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
 
     //kapt ("androidx.room:room-compiler:$room_version")
-   // Kotlin Extensions and Coroutines support for Room
+    // Kotlin Extensions and Coroutines support for Room
     //implementation "androidx.room:room-ktx:$room_version"
-   // Test helpers
-   testImplementation("androidx.room:room-testing:$room_version")
+    // Test helpers
+    testImplementation("androidx.room:room-testing:$room_version")
 
 
 }

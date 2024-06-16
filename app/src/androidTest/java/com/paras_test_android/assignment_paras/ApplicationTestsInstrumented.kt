@@ -23,6 +23,8 @@ import org.junit.runner.RunWith
 class ApplicationTestsInstrumented {
 
     private lateinit var db_1: AppDatabase
+    private lateinit var expenseDao: ExpenseDAO
+
 
     @get:Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
@@ -34,12 +36,15 @@ class ApplicationTestsInstrumented {
         db_1 = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries()
             .build()
+        //expenseDao = db_1.expenseDao()
     }
 
     @After
     fun closeDb() {
         db_1.close()
     }
+
+
 
     @Test
     fun testShowExpenses() {

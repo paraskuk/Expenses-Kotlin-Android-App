@@ -64,31 +64,68 @@ class EditExpensesActivity : AppCompatActivity() {
         }
     }
 
+    //previos function
+//    private fun saveExpenses() {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            try {
+//                val expenseDao = AppDatabase.getDatabase(application).expenseDao()
+//
+//                // Delete expenses with all empty fields
+//                val emptyExpenses = expensesAdapter.getEmptyExpenses()
+//                if (emptyExpenses.isNotEmpty()) {
+//                    Log.d("EditExpensesActivity", "Deleting empty expenses: $emptyExpenses")
+//                    expenseDao.deleteExpenses(emptyExpenses)
+//                }
+//
+//                // Update non-empty expenses
+//                val nonEmptyExpenses = expensesAdapter.getNonEmptyExpenses()
+//                if (nonEmptyExpenses.isNotEmpty()) {
+//                    Log.d("EditExpensesActivity", "Updating non-empty expenses: $nonEmptyExpenses")
+//                    expenseDao.updateExpenses(nonEmptyExpenses)
+//                }
+//
+//                finish()
+//            } catch (e: Exception) {
+//                Log.e("EditExpensesActivity", "Error saving expenses in the app", e)
+//            }
+//        }
+//
+//
+//
+//    }
+
     private fun saveExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val expenseDao = AppDatabase.getDatabase(application).expenseDao()
 
-                // Delete expenses with all empty fields
-                val emptyExpenses = expensesAdapter.getEmptyExpenses()
+                // Get all expenses
+                val allExpenses = expensesAdapter.getAllExpenses()
+
+                // Log expenses
+                Log.d("EditExpensesActivity", "All expenses: $allExpenses")
+
+                // Delete expenses with all empty
+                val emptyExpenses = allExpenses.filter { it.title.isBlank() && it.amount == 0.0 && it.date.isBlank() && it.category.isBlank() }
                 if (emptyExpenses.isNotEmpty()) {
                     Log.d("EditExpensesActivity", "Deleting empty expenses: $emptyExpenses")
                     expenseDao.deleteExpenses(emptyExpenses)
                 }
 
                 // Update non-empty expenses
-                val nonEmptyExpenses = expensesAdapter.getNonEmptyExpenses()
+                val nonEmptyExpenses = allExpenses.filter { it.title.isNotBlank() || it.amount != 0.0 || it.date.isNotBlank() || it.category.isNotBlank() }
                 if (nonEmptyExpenses.isNotEmpty()) {
-                    Log.d("EditExpensesActivity", "Updating non-empty expenses: $nonEmptyExpenses")
+                    Log.d("EditExpensesActivity", "Updating the non-empty expenses to get final: $nonEmptyExpenses")
                     expenseDao.updateExpenses(nonEmptyExpenses)
                 }
 
                 finish()
             } catch (e: Exception) {
-                Log.e("EditExpensesActivity", "Error saving expenses in the app", e)
+                Log.e("EditExpensesActivity", "Error saving expenses in the app due to exception", e)
             }
         }
     }
+
 }
 
 

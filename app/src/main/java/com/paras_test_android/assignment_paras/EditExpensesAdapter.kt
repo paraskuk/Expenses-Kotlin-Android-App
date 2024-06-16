@@ -52,6 +52,10 @@ class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerVi
         return expenses.filter { it.title.isNotBlank() || it.amount != 0.0 || it.date.isNotBlank() || it.category.isNotBlank() }
     }
 
+    fun getAllExpenses(): List<ExpenseTable> {
+        return expenses
+    }
+
     /**
      * Inner class for the expense view holder
      */
