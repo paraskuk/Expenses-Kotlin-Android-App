@@ -14,13 +14,13 @@ import org.junit.Assert.*
 @RunWith(AndroidJUnit4::class)
 class ExpenseDAOTest {
 
-    //create instance of AppDatabase and ExpenseDAO
+    //create instances
     private lateinit var db: AppDatabase
     private lateinit var dao: ExpenseDAO
 
 
     /**
-     * Create in-memory database
+     * Create in-memory database same as in the other test
      */
     @Before
     fun createDb() {

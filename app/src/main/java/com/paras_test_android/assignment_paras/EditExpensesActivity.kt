@@ -64,35 +64,6 @@ class EditExpensesActivity : AppCompatActivity() {
         }
     }
 
-    //previos function
-//    private fun saveExpenses() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                val expenseDao = AppDatabase.getDatabase(application).expenseDao()
-//
-//                // Delete expenses with all empty fields
-//                val emptyExpenses = expensesAdapter.getEmptyExpenses()
-//                if (emptyExpenses.isNotEmpty()) {
-//                    Log.d("EditExpensesActivity", "Deleting empty expenses: $emptyExpenses")
-//                    expenseDao.deleteExpenses(emptyExpenses)
-//                }
-//
-//                // Update non-empty expenses
-//                val nonEmptyExpenses = expensesAdapter.getNonEmptyExpenses()
-//                if (nonEmptyExpenses.isNotEmpty()) {
-//                    Log.d("EditExpensesActivity", "Updating non-empty expenses: $nonEmptyExpenses")
-//                    expenseDao.updateExpenses(nonEmptyExpenses)
-//                }
-//
-//                finish()
-//            } catch (e: Exception) {
-//                Log.e("EditExpensesActivity", "Error saving expenses in the app", e)
-//            }
-//        }
-//
-//
-//
-//    }
 
     private fun saveExpenses() {
         CoroutineScope(Dispatchers.IO).launch {

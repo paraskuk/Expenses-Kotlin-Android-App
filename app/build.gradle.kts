@@ -9,6 +9,7 @@ android {
     compileSdk = 34
 
 
+
     defaultConfig {
         applicationId = "com.paras_test_android.assignment_paras"
         minSdk = 24
@@ -19,6 +20,16 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 
+    }
+
+    buildFeatures {
+        compose = true
+        viewBinding = true
+
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
 
@@ -54,6 +65,7 @@ dependencies {
     //androidTestImplementation("androidx.test:core-ktx")
     androidTestImplementation("androidx.test:runner")
     androidTestUtil("androidx.test:orchestrator:1.1.0")
+    implementation("androidx.compose.material:material:1.6.8")
 
     val room_version = "2.6.1"
 

@@ -13,6 +13,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.paras_test_android.assignment_paras.AppDatabase
 import com.paras_test_android.assignment_paras.MainActivity
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -30,19 +31,37 @@ class ApplicationTestsInstrumented {
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
-    fun createDb() {
+    fun createDb()  { runBlocking {
         val context = ApplicationProvider.getApplicationContext<Context>()
         //create an instance of a database in memory
         db_1 = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        //expenseDao = db_1.expenseDao()
-    }
+        expenseDao = db_1.expenseDao()
+
+        // Insert data to make sure the database is not empty
+        val expense1 = ExpenseTable(title = "Cinema Ticket Other", amount = 10.0, date = "01/01/2024", category = "Relax")
+        val expense2 = ExpenseTable(title = "Chips", amount = 20.0, date = "02/01/2024", category = "Groceries")
+        val expense3 = ExpenseTable(title = "Burger", amount = 30.0, date = "03/01/2024", category = "Food")
+        val expense4 = ExpenseTable(title = "Cinema Ticket Odeon", amount = 60.0, date = "04/01/2024", category = "Relax")
+
+        expenseDao.insertExpenses(listOf(expense1, expense2, expense3, expense4))
+
+    } }
+
 
     @After
-    fun closeDb() {
-        db_1.close()
+    fun populateDb() = runBlocking {
+        // Insert data to populate the database after end of tests
+        val expense1 = ExpenseTable(title = "Cinema Ticket Other", amount = 10.0, date = "01/01/2024", category = "Relax")
+        val expense2 = ExpenseTable(title = "Chips", amount = 20.0, date = "02/01/2024", category = "Groceries")
+        val expense3 = ExpenseTable(title = "Burger", amount = 30.0, date = "03/01/2024", category = "Food")
+        val expense4 = ExpenseTable(title = "Cinema Ticket Odeon", amount = 60.0, date = "04/01/2024", category = "Relax")
+
+        expenseDao.insertExpenses(listOf(expense1, expense2, expense3, expense4))
     }
+
+
 
 
 
@@ -73,6 +92,11 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.mostFrequentCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.averageAmountPerCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.mostRecentExpenseLabel)).check(matches(isDisplayed()))
+    }
+
+    @After
+    fun closeDb() {
+        db_1.close()
     }
 }
 

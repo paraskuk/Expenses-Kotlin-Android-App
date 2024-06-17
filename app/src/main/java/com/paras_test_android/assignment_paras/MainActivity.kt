@@ -2,61 +2,85 @@ package com.paras_test_android.assignment_paras
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import com.paras_test_android.assignment_paras.databinding.ActivityMainBinding
 
-import android.widget.Button
-import android.widget.Toast
+class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var drawerLayout: DrawerLayout
 
-class MainActivity : AppCompatActivity()
-
-{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //this adds the add button
-        val addButton = findViewById<Button>(R.id.addExpensesButton)
-        //and this adds the show button
-        val showButton = findViewById<Button>(R.id.showExpensesButton)
-        //and this adds the edit button for expenses
-        val editButton = findViewById<Button>(R.id.editExpensesButton)
+        drawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
 
-        val statisticsButton = findViewById<Button>(R.id.showStatisticsButton)
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_add_expenses -> {
+                    val intent = Intent(this, AddExpensesActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_show_expenses -> {
+                    val intent = Intent(this, ShowExpensesActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_edit_expenses -> {
+                    val intent = Intent(this, EditExpensesActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_show_statistics -> {
+                    val intent = Intent(this, ShowStatisticsActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_exit -> {
+                    finishAffinity()
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
 
-        //add clicklistener for add expenses button
-        addButton.setOnClickListener {
-            Toast.makeText(this, "Going to Add Expenses", Toast.LENGTH_SHORT).show()
+        // Set up toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+
+        // Set up original menu buttons using View Binding
+        binding.addExpensesButton.setOnClickListener {
             val intent = Intent(this, AddExpensesActivity::class.java)
             startActivity(intent)
         }
-        //add clicklistener for show expenses button
-        showButton.setOnClickListener {
-            Toast.makeText(this, "Going to Show Expenses", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, ShowExpensesActivity::class.java))
-        }
-        //add clicklistener for edit expenses button
-        editButton.setOnClickListener {
-            try {
-                val intent = Intent(this, EditExpensesActivity::class.java)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("MainActivity", "Error starting EditExpensesActivity", e)
-            }
+
+        binding.showExpensesButton.setOnClickListener {
+            val intent = Intent(this, ShowExpensesActivity::class.java)
+            startActivity(intent)
         }
 
-        //add clicklistener for statistics  expenses button
-        statisticsButton.setOnClickListener {
-            Toast.makeText(this, "Going to Statistics on Expenses", Toast.LENGTH_SHORT).show()
+        binding.editExpensesButton.setOnClickListener {
+            val intent = Intent(this, EditExpensesActivity::class.java)
+            startActivity(intent)
+        }
 
-            //Log.d("ShowStatisticsActivity", "Show Statistics button clicked")
+        binding.showStatisticsButton.setOnClickListener {
             val intent = Intent(this, ShowStatisticsActivity::class.java)
             startActivity(intent)
+        }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
         }
     }
 }
