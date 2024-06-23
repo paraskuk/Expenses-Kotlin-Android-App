@@ -1,5 +1,5 @@
 # Budget Tracker Android App
-This is a simple budget tracker app for Android for the purpose of Mobile Computing Course at 
+This is a simple budget tracker app for `Android` for the purpose of Mobile Computing Course at 
 Birkbeck University of London. 
 ***
 ## Features
@@ -10,7 +10,7 @@ Birkbeck University of London.
 ***
 # Instructions for Using the app 
 ### Test the App first
-- Run the Classes ApplicationTestInstrumented and ExpenseDAOTest to test the app functionality.
+- Run the Classes `ApplicationTestInstrumented` and `ExpenseDAOTest` to test the app functionality.
 ***
 ### Once Tests finish go to the app and execute main app on your virtual device on Android Studio
 - Add expenses with details such as title, amount, date, and category.
