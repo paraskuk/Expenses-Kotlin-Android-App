@@ -33,6 +33,9 @@ interface ExpenseDAO {
     @Delete
     suspend fun deleteExpenses(expenses: List<ExpenseTable>)
 
+    @Query("DELETE FROM expenses")
+    suspend fun deleteAllExpenses()
+
     @Query("SELECT title, COUNT(title) as count FROM expenses GROUP BY title ORDER BY count DESC LIMIT 1")
     suspend fun getMostFrequentTitle(): ExpenseTitleFrequency
 

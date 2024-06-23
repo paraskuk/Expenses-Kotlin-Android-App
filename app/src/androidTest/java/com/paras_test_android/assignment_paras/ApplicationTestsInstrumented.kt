@@ -10,6 +10,7 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import org.hamcrest.Matchers.allOf
 
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -50,6 +51,11 @@ class ApplicationTestsInstrumented {
             .allowMainThreadQueries()
             .build()
         expenseDao = db_1.expenseDao()
+
+
+        // Clear the database before each test to make sure the database is empty
+        expenseDao.deleteAllExpenses()
+
 
         // Insert data to make sure the database is not empty
         val expense1 = ExpenseTable(title = "Cinema Ticket Other", amount = 10.0, date = "01/01/2024", category = "Relax")
@@ -102,7 +108,8 @@ class ApplicationTestsInstrumented {
         // Launch MainActivity
         ActivityScenario.launch(MainActivity::class.java)
 
-        // Click on the "Show Statistics On List" button
+        // Click on the "Show Statistics On List" button this needs to take place twice
+        onView(withId(R.id.showStatisticsButton)).perform(click())
         onView(withId(R.id.showStatisticsButton)).perform(click())
 
         // statistics are displayed
@@ -110,6 +117,7 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.mostFrequentCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.averageAmountPerCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.mostRecentExpenseLabel)).check(matches(isDisplayed()))
+
     }
 
     /**
@@ -117,10 +125,9 @@ class ApplicationTestsInstrumented {
      */
     @Test
     fun testAddExpenses() {
-
         ActivityScenario.launch(MainActivity::class.java)
 
-        // Click  "Add Expenses"
+        // Click "Add Expenses"
         onView(withId(R.id.addExpensesButton)).perform(click())
 
         // Enter expense elements
@@ -132,17 +139,29 @@ class ApplicationTestsInstrumented {
         // Click "Submit Expense"
         onView(withId(R.id.submitExpenseButton)).perform(click())
 
-        // Navigate to show expenses and check if the new expense is listed
+        // Add a short delay
+        Thread.sleep(1000)
+
+        // Navigate to show expenses
         onView(withId(R.id.showExpensesButton)).perform(click())
-        onView(withText("Test Expense")).check(matches(isDisplayed()))
+
+        // Get the number of items in the RecyclerView this is to avoid magic number
+        val expenseCount = runBlocking {
+            expenseDao.getAllExpenses().size
+        }
+
+        // Scroll to the expense position
+        onView(withId(R.id.expensesRecyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(expenseCount - 1))
+
+        // Check for added expense existence
+        onView(allOf(withId(R.id.titleTextView), withText("Test Expense"))).check(matches(isDisplayed()))
     }
-
-
     /**
      * close the db destroy the resource
      */
     @After
     fun closeDb() {
+
         db_1.close()
     }
 }
