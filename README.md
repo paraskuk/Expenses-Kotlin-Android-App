@@ -35,6 +35,7 @@ This is the main view of the App with two main menu options modalities:
 ***
 - Show Statistics on List : Here user can view the statistics of all expenses added.
 ![img_4.png](img_4.png)
+![img_5.png](img_5.png)
 ***
 
 
