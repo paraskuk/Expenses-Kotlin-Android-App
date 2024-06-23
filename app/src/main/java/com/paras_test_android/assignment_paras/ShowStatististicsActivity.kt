@@ -44,7 +44,8 @@ class ShowStatisticsActivity : AppCompatActivity() {
                     binding.mostFrequentCategoryValue.text = "${mostFrequentCategory.category} (${mostFrequentCategory.count} times)"
                     //binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount}" }
                     binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount.roundToTwoDecimalPlaces()}" }
-                    binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount} on ${mostRecentExpense.date})"
+                    //binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount} on ${mostRecentExpense.date})"
+                    binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount.roundToTwoDecimalPlaces()} on ${mostRecentExpense.date})"
                     Toast.makeText(this@ShowStatisticsActivity, "Statistics updated", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
