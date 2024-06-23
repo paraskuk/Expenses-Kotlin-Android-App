@@ -79,4 +79,13 @@
         android:text="Show Statistics"
         android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/backButtonShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Main Menu"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>
+
+

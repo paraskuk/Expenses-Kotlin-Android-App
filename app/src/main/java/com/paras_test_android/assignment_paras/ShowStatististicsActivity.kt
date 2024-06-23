@@ -31,6 +31,9 @@ class ShowStatisticsActivity : AppCompatActivity() {
             Log.d("ShowStatisticsActivity", "Show Statistics button clicked")
             showStatistics()
         }
+        //go back to main activity
+        BackButtonHelper.setupBackButton(this, R.id.backButtonShow, MainActivity::class.java)
+
     }
 
     private fun showStatistics() {
