@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 /***
  * Adapter class for editing expenses
-
  */
 class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerView.Adapter<EditExpensesAdapter.ExpenseViewHolder>() {
 

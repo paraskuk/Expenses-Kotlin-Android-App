@@ -31,6 +31,8 @@ This is the main view of the App with two main menu options modalities:
 ![img_2.png](img_2.png)
 ***
 - Edit Expenses on List : Here user will edit the expenses.
+- A user can edit any element of the expense.
+- To erase the expense , user needs to erase all the elements of the expense.
 ![img_3.png](img_3.png)
 ***
 - Show Statistics on List : Here user can view the statistics of all expenses added.
