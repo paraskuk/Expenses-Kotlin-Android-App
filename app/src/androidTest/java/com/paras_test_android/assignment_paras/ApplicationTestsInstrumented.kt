@@ -67,6 +67,7 @@ class ApplicationTestsInstrumented {
 
     } }
 
+
     /**
      * populate db with data
      */
@@ -95,6 +96,9 @@ class ApplicationTestsInstrumented {
         // Click on the "Show Expenses On List" button
         onView(withId(R.id.showExpensesButton)).perform(click())
 
+        // Add a short delay
+        Thread.sleep(1000)
+
         // Verify RecyclerView is displayed
         onView(withId(R.id.expensesRecyclerView)).check(matches(isDisplayed()))
     }
@@ -111,6 +115,9 @@ class ApplicationTestsInstrumented {
         // Click on the "Show Statistics On List" button this needs to take place twice
         onView(withId(R.id.showStatisticsButton)).perform(click())
         onView(withId(R.id.showStatisticsButton)).perform(click())
+
+        // Add a short delay
+        Thread.sleep(1000)
 
         // statistics are displayed
         onView(withId(R.id.mostFrequentTitleLabel)).check(matches(isDisplayed()))
@@ -156,6 +163,9 @@ class ApplicationTestsInstrumented {
         // Check for added expense existence
         onView(allOf(withId(R.id.titleTextView), withText("Test Expense"))).check(matches(isDisplayed()))
     }
+
+
+
     /**
      * close the db destroy the resource
      */
@@ -164,6 +174,8 @@ class ApplicationTestsInstrumented {
 
         db_1.close()
     }
+
+
 }
 
 

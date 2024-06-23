@@ -42,7 +42,8 @@ class ShowStatisticsActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     binding.mostFrequentTitleValue.text = "${mostFrequentTitle.title} (${mostFrequentTitle.count} times)"
                     binding.mostFrequentCategoryValue.text = "${mostFrequentCategory.category} (${mostFrequentCategory.count} times)"
-                    binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount}" }
+                    //binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount}" }
+                    binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount.roundToTwoDecimalPlaces()}" }
                     binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount} on ${mostRecentExpense.date})"
                     Toast.makeText(this@ShowStatisticsActivity, "Statistics updated", Toast.LENGTH_SHORT).show()
                 }

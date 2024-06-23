@@ -44,7 +44,7 @@ class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerVi
 
         fun bind(expense: ExpenseTable) {
             titleEditText.setText(expense.title)
-            amountEditText.setText(expense.amount.toString())
+            amountEditText.setText(expense.amount.roundToTwoDecimalPlaces().toString())
             dateEditText.setText(expense.date)
             categoryEditText.setText(expense.category)
 

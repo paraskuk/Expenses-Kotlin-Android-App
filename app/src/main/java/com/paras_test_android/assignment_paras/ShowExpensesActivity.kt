@@ -40,8 +40,14 @@ class ShowExpensesActivity : AppCompatActivity() {
     private fun loadExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
             val expenses = AppDatabase.getDatabase(application).expenseDao().getAllExpenses()
+//            withContext(Dispatchers.Main) {
+//                expensesAdapter.updateExpenses(expenses)
+//            }
+
             withContext(Dispatchers.Main) {
-                expensesAdapter.updateExpenses(expenses)
+                expensesAdapter.updateExpenses(expenses.map {
+                    it.apply { amount = amount.roundToTwoDecimalPlaces() }
+                })
             }
         }
     }
