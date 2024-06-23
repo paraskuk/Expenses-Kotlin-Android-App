@@ -17,13 +17,27 @@
         android:scrollbars="vertical"
         android:fadeScrollbars="false" />
 
+    <!-- Save button -->
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Save"
+        app:layout_constraintBottom_toTopOf="@id/backButtonEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Back button -->
+    <Button
+        android:id="@+id/backButtonEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Back to Main Menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

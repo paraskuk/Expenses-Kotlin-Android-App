@@ -1,5 +1,6 @@
 package com.paras_test_android.assignment_paras
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -12,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 
 /**
@@ -34,11 +36,16 @@ class EditExpensesActivity : AppCompatActivity() {
             expensesRecyclerView.adapter = expensesAdapter
 
             loadExpenses()
-
+            //save button
             val saveButton = findViewById<Button>(R.id.saveButton)
             saveButton.setOnClickListener {
                 saveExpenses()
+
             }
+
+             //here we add the back button to have better navigation
+            BackButtonHelper.setupBackButton(this, R.id.backButtonEdit, MainActivity::class.java)
+
         } catch (e: Exception) {
             Log.e("EditExpensesActivity", "Error while initializing activity in the app", e)
         }
@@ -64,7 +71,12 @@ class EditExpensesActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     private fun saveExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
