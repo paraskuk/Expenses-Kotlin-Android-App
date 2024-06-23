@@ -3,9 +3,8 @@ package com.paras_test_android.assignment_paras
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.paras_test_android.assignment_paras.databinding.ActivityAddExpenseBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,36 +13,26 @@ import kotlinx.coroutines.launch
  * Activity for adding expenses.
  */
 class AddExpensesActivity : AppCompatActivity() {
-    private lateinit var titleInput: EditText
-    private lateinit var amountInput: EditText
-    private lateinit var dateInput: EditText
-    private lateinit var categoryInput: EditText
-    private lateinit var submitButton: Button
+    private lateinit var binding: ActivityAddExpenseBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_expense)
+        binding = ActivityAddExpenseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        titleInput = findViewById(R.id.titleInput)
-        amountInput = findViewById(R.id.amountInput)
-        dateInput = findViewById(R.id.dateInput)
-        categoryInput = findViewById(R.id.categoryInput)
-        submitButton = findViewById(R.id.submitExpenseButton)
-
-        submitButton.setOnClickListener {
+        binding.submitExpenseButton.setOnClickListener {
             addExpense()
         }
 
-        //adding the back button
+        // Set up the back button using BackButtonHelper
         BackButtonHelper.setupBackButton(this, R.id.backButtonAdd, MainActivity::class.java)
-
     }
 
     private fun addExpense() {
-        val title = titleInput.text.toString()
-        val amount = amountInput.text.toString().toDoubleOrNull() ?: 0.0
-        val date = dateInput.text.toString()
-        val category = categoryInput.text.toString()
+        val title = binding.titleInput.text.toString()
+        val amount = binding.amountInput.text.toString().toDoubleOrNull() ?: 0.0
+        val date = binding.dateInput.text.toString()
+        val category = binding.categoryInput.text.toString()
 
         if (title.isNotBlank() && date.isNotBlank() && category.isNotBlank()) {
             val expense = ExpenseTable(title = title, amount = amount, date = date, category = category)
@@ -52,7 +41,6 @@ class AddExpensesActivity : AppCompatActivity() {
             Log.d("AddExpensesActivity", "Invalid input: Title, Date, and Category must not be empty.")
         }
     }
-
 
     override fun onBackPressed() {
         super.onBackPressed()

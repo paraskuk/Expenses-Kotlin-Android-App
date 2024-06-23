@@ -3,47 +3,41 @@ package com.paras_test_android.assignment_paras
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.paras_test_android.assignment_paras.databinding.ActivityEditExpensesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
-
 /**
  * Class that edits expenses activity
  */
-
-
 class EditExpensesActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEditExpensesBinding
     private lateinit var expensesAdapter: EditExpensesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_expenses)
+        binding = ActivityEditExpensesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         try {
-            val expensesRecyclerView = findViewById<RecyclerView>(R.id.editExpensesRecyclerView)
             expensesAdapter = EditExpensesAdapter(listOf())
 
-            expensesRecyclerView.layoutManager = LinearLayoutManager(this)
-            expensesRecyclerView.adapter = expensesAdapter
+            binding.editExpensesRecyclerView.layoutManager = LinearLayoutManager(this)
+            binding.editExpensesRecyclerView.adapter = expensesAdapter
 
             loadExpenses()
-            //save button
-            val saveButton = findViewById<Button>(R.id.saveButton)
-            saveButton.setOnClickListener {
-                saveExpenses()
 
+            // Save button
+            binding.saveButton.setOnClickListener {
+                saveExpenses()
             }
 
-             //here we add the back button to have better navigation
+            // Set up the back button using BackButtonHelper
             BackButtonHelper.setupBackButton(this, R.id.backButtonEdit, MainActivity::class.java)
 
         } catch (e: Exception) {
@@ -89,7 +83,7 @@ class EditExpensesActivity : AppCompatActivity() {
                 // Log the expenses for debugging
                 Log.d("EditExpensesActivity", "All expenses: $allExpenses")
 
-                // Identify empty and non-empty expenses to erase the rights ones later
+                // Identify empty and non-empty expenses to erase the right ones later
                 val (emptyExpenses, nonEmptyExpenses) = allExpenses.partition { expense ->
                     Log.d("EditExpensesActivity", "Evaluating expense: $expense")
                     expense.title.trim().isBlank() && expense.amount == 0.0 && expense.date.trim().isBlank() && expense.category.trim().isBlank()
@@ -123,9 +117,4 @@ class EditExpensesActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
-
-
-

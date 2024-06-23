@@ -1,51 +1,35 @@
 package com.paras_test_android.assignment_paras
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.paras_test_android.assignment_paras.databinding.ShowExpensesActivityBinding
 import kotlinx.coroutines.*
-/**
- *Class that Shows expenses activity
- */
 
+/**
+ * Class that Shows expenses activity
+ */
 class ShowExpensesActivity : AppCompatActivity() {
+    private lateinit var binding: ShowExpensesActivityBinding
     private lateinit var expensesAdapter: ExpensesAdapter
 
-    /**
-     * Function that creates the activity
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.show_expenses_activity)
+        binding = ShowExpensesActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val expensesRecyclerView = findViewById<RecyclerView>(R.id.expensesRecyclerView)
         expensesAdapter = ExpensesAdapter(listOf())
-        expensesRecyclerView.adapter = expensesAdapter
-        expensesRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.expensesRecyclerView.adapter = expensesAdapter
+        binding.expensesRecyclerView.layoutManager = LinearLayoutManager(this)
 
         loadExpenses()
 
-        // here we add the back button to have better navigation
-        val backButton = findViewById<Button>(R.id.backButton)
-        backButton.setOnClickListener {
-            Toast.makeText(this, "I am going back to Main Menu !", Toast.LENGTH_SHORT).show()
-
-            // Navigate back to MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        // Set up the back button using BackButtonHelper
+        BackButtonHelper.setupBackButton(this, R.id.backButton, MainActivity::class.java)
     }
 
-    /**
-     * Function that  handles back button to improve usability
-     */
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
@@ -53,10 +37,6 @@ class ShowExpensesActivity : AppCompatActivity() {
         finish()
     }
 
-
-    /**
-     * Function that loads expenses using Coroutines
-     */
     private fun loadExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
             val expenses = AppDatabase.getDatabase(application).expenseDao().getAllExpenses()
@@ -66,4 +46,3 @@ class ShowExpensesActivity : AppCompatActivity() {
         }
     }
 }
-
