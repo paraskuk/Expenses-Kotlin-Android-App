@@ -26,7 +26,6 @@ class ApplicationTestsInstrumented {
     private lateinit var db_1: AppDatabase
 
     //create instance of dao
-
     private lateinit var expenseDao: ExpenseDAO
 
 
@@ -105,6 +104,7 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.averageAmountPerCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.mostRecentExpenseLabel)).check(matches(isDisplayed()))
     }
+
 
     /**
      * close the db destroy the resource

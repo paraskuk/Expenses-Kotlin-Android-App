@@ -18,7 +18,6 @@ class ExpenseDAOTest {
     private lateinit var db: AppDatabase
     private lateinit var dao: ExpenseDAO
 
-
     /**
      * Create in-memory database same as in the other test
      */
