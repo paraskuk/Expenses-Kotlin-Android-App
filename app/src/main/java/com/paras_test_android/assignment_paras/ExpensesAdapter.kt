@@ -47,3 +47,6 @@ class ExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerView.A
 }
 
 
+
+
+
