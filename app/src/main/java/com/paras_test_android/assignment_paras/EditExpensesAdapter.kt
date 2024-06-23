@@ -1,26 +1,24 @@
 package com.paras_test_android.assignment_paras
 
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 
+/***
+ * Adapter class for editing expenses
 
+ */
 class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerView.Adapter<EditExpensesAdapter.ExpenseViewHolder>() {
 
-    /**
-     * Function that creates the view holder on creation
-     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_edit_expense, parent, false)
         return ExpenseViewHolder(view)
     }
 
-    /**
-     * Function that is binding the view holder to the data
-     */
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val expense = expenses[position]
         holder.bind(expense)
@@ -30,35 +28,15 @@ class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerVi
         return expenses.size
     }
 
-    /**
-     * Method set to update the expenses list
-     */
     fun updateExpenses(newExpenses: List<ExpenseTable>) {
         expenses = newExpenses
         notifyDataSetChanged()
-        Log.d("EditExpensesAdapter", "Expenses updated: $expenses") // Log updated expenses
-    }
-
-    /**
-     * Method to get empty expenses in the list
-     */
-    fun getEmptyExpenses(): List<ExpenseTable> {
-        return expenses.filter { it.title.isBlank() && it.amount == 0.0 && it.date.isBlank() && it.category.isBlank() }
-    }
-    /**
-     * Method to get non empty expenses in the list
-     */
-    fun getNonEmptyExpenses(): List<ExpenseTable> {
-        return expenses.filter { it.title.isNotBlank() || it.amount != 0.0 || it.date.isNotBlank() || it.category.isNotBlank() }
     }
 
     fun getAllExpenses(): List<ExpenseTable> {
         return expenses
     }
 
-    /**
-     * Inner class for the expense view holder
-     */
     class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleEditText: EditText = itemView.findViewById(R.id.titleEditText)
         private val amountEditText: EditText = itemView.findViewById(R.id.amountEditText)
@@ -70,10 +48,46 @@ class EditExpensesAdapter(private var expenses: List<ExpenseTable>) : RecyclerVi
             amountEditText.setText(expense.amount.toString())
             dateEditText.setText(expense.date)
             categoryEditText.setText(expense.category)
+
+            titleEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    expense.title = s.toString()
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
+            amountEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    expense.amount = s.toString().toDoubleOrNull() ?: 0.0
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
+            dateEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    expense.date = s.toString()
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
+            categoryEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    expense.category = s.toString()
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
         }
     }
 }
-
-
-
-

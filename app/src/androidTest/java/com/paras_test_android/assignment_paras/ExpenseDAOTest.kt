@@ -29,6 +29,9 @@ class ExpenseDAOTest {
         dao = db.expenseDao()
     }
 
+    /**
+     * Close the database after the test
+     */
     @After
     fun closeDb() {
         db.close()

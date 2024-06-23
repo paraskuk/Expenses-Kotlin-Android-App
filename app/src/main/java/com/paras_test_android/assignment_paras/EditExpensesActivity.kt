@@ -65,6 +65,7 @@ class EditExpensesActivity : AppCompatActivity() {
     }
 
 
+
     private fun saveExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -73,30 +74,46 @@ class EditExpensesActivity : AppCompatActivity() {
                 // Get all expenses
                 val allExpenses = expensesAdapter.getAllExpenses()
 
-                // Log expenses
+                // Log the expenses for debugging
                 Log.d("EditExpensesActivity", "All expenses: $allExpenses")
 
-                // Delete expenses with all empty
-                val emptyExpenses = allExpenses.filter { it.title.isBlank() && it.amount == 0.0 && it.date.isBlank() && it.category.isBlank() }
+                // Identify empty and non-empty expenses to erase the rights ones later
+                val (emptyExpenses, nonEmptyExpenses) = allExpenses.partition { expense ->
+                    Log.d("EditExpensesActivity", "Evaluating expense: $expense")
+                    expense.title.trim().isBlank() && expense.amount == 0.0 && expense.date.trim().isBlank() && expense.category.trim().isBlank()
+                }
+
+                // Delete empty expenses
                 if (emptyExpenses.isNotEmpty()) {
                     Log.d("EditExpensesActivity", "Deleting empty expenses: $emptyExpenses")
                     expenseDao.deleteExpenses(emptyExpenses)
                 }
 
                 // Update non-empty expenses
-                val nonEmptyExpenses = allExpenses.filter { it.title.isNotBlank() || it.amount != 0.0 || it.date.isNotBlank() || it.category.isNotBlank() }
                 if (nonEmptyExpenses.isNotEmpty()) {
-                    Log.d("EditExpensesActivity", "Updating the non-empty expenses to get final: $nonEmptyExpenses")
+                    Log.d("EditExpensesActivity", "Updating non-empty expenses: $nonEmptyExpenses")
                     expenseDao.updateExpenses(nonEmptyExpenses)
                 }
 
-                finish()
+                // Update the adapter
+                withContext(Dispatchers.Main) {
+                    val updatedExpenses = nonEmptyExpenses.toMutableList()
+                    expensesAdapter.updateExpenses(updatedExpenses)
+                }
+
+                // Close the activity
+                withContext(Dispatchers.Main) {
+                    finish()
+                }
+
             } catch (e: Exception) {
-                Log.e("EditExpensesActivity", "Error saving expenses in the app due to exception", e)
+                Log.e("EditExpensesActivity", "Error saving expenses: ${e.message}")
             }
         }
     }
 
+
 }
+
 
 

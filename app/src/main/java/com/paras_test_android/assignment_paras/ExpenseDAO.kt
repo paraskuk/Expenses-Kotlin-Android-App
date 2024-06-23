@@ -1,10 +1,13 @@
 package com.paras_test_android.assignment_paras
+import android.util.Log
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import java.nio.file.Files.delete
+
 //import kotlinx.coroutines.flow.Flow
 
 /**
@@ -13,8 +16,6 @@ import androidx.room.Update
  */
 @Dao
 interface ExpenseDAO {
-//    @Insert
-//    suspend fun insertExpense(expense: ExpenseTable)
 
     @Insert
     suspend fun insertExpense(expense: List<ExpenseTable>)
