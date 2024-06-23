@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.espresso.contrib)
     testImplementation(libs.junit)
     testImplementation ("org.jetbrains.kotlin:kotlin-test-junit")
     androidTestImplementation(libs.androidx.junit)

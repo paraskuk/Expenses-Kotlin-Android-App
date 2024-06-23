@@ -1,24 +1,31 @@
 package com.paras_test_android.assignment_paras
 
 import android.content.Context
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import org.hamcrest.Matchers.allOf
 
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.paras_test_android.assignment_paras.AppDatabase
-import com.paras_test_android.assignment_paras.MainActivity
+//import com.paras_test_android.assignment_paras.AppDatabase
+//import com.paras_test_android.assignment_paras.MainActivity
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
+
+
 
 @RunWith(AndroidJUnit4::class)
 class ApplicationTestsInstrumented {
@@ -103,6 +110,31 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.mostFrequentCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.averageAmountPerCategoryLabel)).check(matches(isDisplayed()))
         onView(withId(R.id.mostRecentExpenseLabel)).check(matches(isDisplayed()))
+    }
+
+    /**
+     * Test the functionality of the add expenses
+     */
+    @Test
+    fun testAddExpenses() {
+
+        ActivityScenario.launch(MainActivity::class.java)
+
+        // Click  "Add Expenses"
+        onView(withId(R.id.addExpensesButton)).perform(click())
+
+        // Enter expense elements
+        onView(withId(R.id.titleInput)).perform(typeText("Test Expense"), closeSoftKeyboard())
+        onView(withId(R.id.amountInput)).perform(typeText("987.0"), closeSoftKeyboard())
+        onView(withId(R.id.dateInput)).perform(typeText("01/01/2024"), closeSoftKeyboard())
+        onView(withId(R.id.categoryInput)).perform(typeText("Test Cat"), closeSoftKeyboard())
+
+        // Click "Submit Expense"
+        onView(withId(R.id.submitExpenseButton)).perform(click())
+
+        // Navigate to show expenses and check if the new expense is listed
+        onView(withId(R.id.showExpensesButton)).perform(click())
+        onView(withText("Test Expense")).check(matches(isDisplayed()))
     }
 
 
