@@ -37,6 +37,10 @@ class ExpenseDAOTest {
         db.close()
     }
 
+
+    /**
+     * Test insert expense
+     */
     @Test
     fun testInsertExpense() = runBlocking {
         val expense = ExpenseTable(title = "Groceries", amount = 50.0, date = "12/06/2024", category = "Food")
@@ -46,6 +50,9 @@ class ExpenseDAOTest {
         assertEquals("Groceries", retrievedExpenses[0].title)
     }
 
+    /**
+     * Test update expenses functionality
+     */
     @Test
     fun testUpdateExpense() = runBlocking {
         val expense = ExpenseTable(title = "Groceries", amount = 50.0, date = "12/06/2024", category = "Food")
@@ -58,6 +65,9 @@ class ExpenseDAOTest {
         assertEquals(75.0, retrievedUpdatedExpense.amount, 0.01)
     }
 
+    /**
+     * Test delete expenses functionality
+     */
     @Test
     fun testDeleteExpense() = runBlocking {
         val expense = ExpenseTable(title = "Groceries", amount = 50.0, date = "12/06/2024", category = "Food")
@@ -68,6 +78,9 @@ class ExpenseDAOTest {
         assertTrue(retrievedExpenses.isEmpty())
     }
 
+    /**
+     * Test get all expenses in app
+     */
     @Test
     fun testGetAllExpenses() = runBlocking {
         val expense1 = ExpenseTable(title = "Groceries", amount = 50.0, date = "12/06/2024", category = "Food")

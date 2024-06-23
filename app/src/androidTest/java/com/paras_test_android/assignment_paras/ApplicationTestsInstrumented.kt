@@ -22,14 +22,20 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ApplicationTestsInstrumented {
-
+    //create instance of db
     private lateinit var db_1: AppDatabase
+
+    //create instance of dao
+
     private lateinit var expenseDao: ExpenseDAO
 
 
     @get:Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
+    /**
+     * Create an instance of the database before test
+     */
     @Before
     fun createDb()  { runBlocking {
         val context = ApplicationProvider.getApplicationContext<Context>()
@@ -49,7 +55,9 @@ class ApplicationTestsInstrumented {
 
     } }
 
-
+    /**
+     * populate db with data
+     */
     @After
     fun populateDb() = runBlocking {
         // Insert data to populate the database after end of tests
@@ -64,7 +72,9 @@ class ApplicationTestsInstrumented {
 
 
 
-
+    /**
+     * Test the functionality of the show expenses
+     */
     @Test
     fun testShowExpenses() {
         // MainActivity
@@ -78,7 +88,9 @@ class ApplicationTestsInstrumented {
     }
 
 
-
+    /**
+     * Test the functionality of the  show statistics button
+     */
     @Test
     fun testShowStatistics() {
         // Launch MainActivity
@@ -94,6 +106,9 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.mostRecentExpenseLabel)).check(matches(isDisplayed()))
     }
 
+    /**
+     * close the db destroy the resource
+     */
     @After
     fun closeDb() {
         db_1.close()
