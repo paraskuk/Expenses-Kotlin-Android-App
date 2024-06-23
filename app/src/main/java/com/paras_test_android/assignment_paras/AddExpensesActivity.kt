@@ -1,5 +1,6 @@
 package com.paras_test_android.assignment_paras
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -32,6 +33,10 @@ class AddExpensesActivity : AppCompatActivity() {
         submitButton.setOnClickListener {
             addExpense()
         }
+
+        //adding the back button
+        BackButtonHelper.setupBackButton(this, R.id.backButtonAdd, MainActivity::class.java)
+
     }
 
     private fun addExpense() {
@@ -46,6 +51,14 @@ class AddExpensesActivity : AppCompatActivity() {
         } else {
             Log.d("AddExpensesActivity", "Invalid input: Title, Date, and Category must not be empty.")
         }
+    }
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun saveExpenseToDatabase(expense: ExpenseTable) {
