@@ -11,6 +11,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*
 
+/**
+ * Test class for ExpenseDAO that tests all the CRUD functionality
+ */
 @RunWith(AndroidJUnit4::class)
 class ExpenseDAOTest {
 

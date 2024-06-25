@@ -8,6 +8,9 @@ android {
     namespace = "com.paras_test_android.assignment_paras"
     compileSdk = 34
 
+//    testOptions {
+//        animationsDisabled = true
+//    }
 
 
     defaultConfig {
@@ -58,6 +61,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.espresso.contrib)
+    implementation(libs.androidx.rules)
     testImplementation(libs.junit)
     testImplementation ("org.jetbrains.kotlin:kotlin-test-junit")
     androidTestImplementation(libs.androidx.junit)
