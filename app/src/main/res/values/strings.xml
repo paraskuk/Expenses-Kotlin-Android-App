@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">assignment_paras</string>
+    <!--This name appears on Android Phone's home screen.-->
+    <string name="app_name">Budget Tracking App</string>
 </resources>
