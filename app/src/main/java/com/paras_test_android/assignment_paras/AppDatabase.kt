@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 /**
  * Database class for the app that returns the instance of the database
-
  */
 @Database(entities = [ExpenseTable::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -21,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
         private var INSTANCE: AppDatabase? = null
 
         /**
-         * Factory Function that returns the instance of the database
+         * Factory Function that returns the instance of the  Room database.
          */
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {

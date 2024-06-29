@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * Activity for adding expenses.
+ * Class for Activity for adding expenses.
  */
 class AddExpensesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddExpenseBinding
@@ -28,6 +28,9 @@ class AddExpensesActivity : AppCompatActivity() {
         BackButtonHelper.setupBackButton(this, R.id.backButtonAdd, MainActivity::class.java)
     }
 
+    /**
+     * Function to add expense to the database. Logging is activated to debug the function.
+     */
     private fun addExpense() {
         val title = binding.titleInput.text.toString()
         val amount = binding.amountInput.text.toString().toDoubleOrNull() ?: 0.0
@@ -42,6 +45,10 @@ class AddExpensesActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to handle the back button. It returns to the MainActivity.
+     * Deprecated but good for compatibility I guess
+     */
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
@@ -49,6 +56,11 @@ class AddExpensesActivity : AppCompatActivity() {
         finish()
     }
 
+
+    /**
+     * Function to save the expense to the database once the save button is pressed
+     * by the user.
+     */
     private fun saveExpenseToDatabase(expense: ExpenseTable) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
