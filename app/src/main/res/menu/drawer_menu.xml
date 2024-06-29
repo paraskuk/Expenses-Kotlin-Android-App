@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    this is the menu on top left hand corner of the app-->
     <item
         android:id="@+id/nav_add_expenses"
         android:icon="@drawable/ic_add"

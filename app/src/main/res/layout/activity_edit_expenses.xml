@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
-
+    <!-- edit expense activity layout file-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/editExpensesRecyclerView"
         android:layout_width="0dp"

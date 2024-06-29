@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ShowStatisticsActivity">
+    <!-- Show statistics activity layout with all necessary buttons-->
 
     <TextView
         android:id="@+id/mostFrequentTitleLabel"
