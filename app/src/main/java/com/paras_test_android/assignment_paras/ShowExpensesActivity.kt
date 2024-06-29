@@ -12,9 +12,13 @@ import kotlinx.coroutines.*
  * Class that Shows expenses activity
  */
 class ShowExpensesActivity : AppCompatActivity() {
+    //binding
     private lateinit var binding: ShowExpensesActivityBinding
     private lateinit var expensesAdapter: ExpensesAdapter
 
+    /**
+     * OnCreate method overriding for show statistics activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ShowExpensesActivityBinding.inflate(layoutInflater)
@@ -26,7 +30,7 @@ class ShowExpensesActivity : AppCompatActivity() {
 
         loadExpenses()
 
-        // Set up the back button using BackButtonHelper
+        // back button using BackButtonHelper
         BackButtonHelper.setupBackButton(this, R.id.backButton, MainActivity::class.java)
     }
 
@@ -37,12 +41,13 @@ class ShowExpensesActivity : AppCompatActivity() {
         finish()
     }
 
+    //** Load expenses method leveraging rounding
+    //
+    // */
     private fun loadExpenses() {
         CoroutineScope(Dispatchers.IO).launch {
             val expenses = AppDatabase.getDatabase(application).expenseDao().getAllExpenses()
-//            withContext(Dispatchers.Main) {
-//                expensesAdapter.updateExpenses(expenses)
-//            }
+
 
             withContext(Dispatchers.Main) {
                 expensesAdapter.updateExpenses(expenses.map {

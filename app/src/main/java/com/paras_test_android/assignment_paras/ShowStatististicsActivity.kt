@@ -7,11 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.paras_test_android.assignment_paras.databinding.ActivityShowStatisticsBinding
 import kotlinx.coroutines.*
 
+/**
+ * Class that orchestrates statistics activity
+ */
 class ShowStatisticsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityShowStatisticsBinding
     private val expenseDao by lazy { AppDatabase.getDatabase(this).expenseDao() }
 
+    /**
+     * OnCreate method overriding  that sets a listener for the show statistics button
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShowStatisticsBinding.inflate(layoutInflater)
@@ -26,9 +32,13 @@ class ShowStatisticsActivity : AppCompatActivity() {
         BackButtonHelper.setupBackButton(this, R.id.backButtonShow, MainActivity::class.java)
     }
 
+    /**
+     * Method that fetches the statistics from the database and displays them
+     */
     private fun showStatistics() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
+                //get all the statistics for the four different categories from DAO
                 val mostFrequentTitle = expenseDao.getMostFrequentTitle()
                 val mostFrequentCategory = expenseDao.getMostFrequentCategory()
                 val averageAmounts = expenseDao.getAverageAmountPerCategory()
