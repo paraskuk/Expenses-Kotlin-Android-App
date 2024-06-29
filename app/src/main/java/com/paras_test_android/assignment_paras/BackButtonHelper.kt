@@ -9,7 +9,6 @@ import android.widget.Toast
 /**
  * Helper class to set up back button in activities to navigate back to main menu
  and avoid code duplication
-
  */
 object BackButtonHelper {
     fun setupBackButton(activity: Activity, buttonId: Int, destinationActivity: Class<out Activity>) {
