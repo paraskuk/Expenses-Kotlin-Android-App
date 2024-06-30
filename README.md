@@ -40,7 +40,8 @@ This is the main view of the App with two main menu options modalities:
 ![img_4.png](img_4.png)
 ![img_5.png](img_5.png)
 ***
-- Exiting the App : User can exit the app by clicking on the exit button.
+### Exiting the App 
+- User can exit the app by clicking on the exit button.
 ***
 
 
