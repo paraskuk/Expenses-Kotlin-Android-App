@@ -27,7 +27,6 @@ This is the main view of the App with two main menu options modalities:
 ***
 - Add Expenses on List : Here user can add expenses one by one.
 ![img_1.png](img_1.png)
-- Note: <b> Avoid adding expenses starting with name Test in order to avoid test interference! </b>
 ***
 - Show Expenses on List : Here user can view all the expenses added.
 ![img_2.png](img_2.png)
