@@ -9,7 +9,7 @@ Birkbeck University of London.
 - View statistics on expenses, such as the most frequent category and total spending.
 ***
 # Instructions for Using the app 
-### Test the App first
+### Test the App 
 - Run the Classes `ApplicationTestInstrumented` and `ExpenseDAOTest` to test the app functionality.
 ***
 ### Once Tests finish go to the app and execute main app on your virtual device on Android Studio
@@ -32,7 +32,7 @@ This is the main view of the App with two main menu options modalities:
 ***
 - Edit Expenses on List : Here user will edit the expenses.
 - A user can edit any element of the expense.
-- To erase the expense , user needs to erase all the elements of a <b> specific </b> expense.
+- To erase the expense , user needs to <b> erase all </b> the elements of a <b> specific </b> expense.
 ![img_3.png](img_3.png)
 ***
 - Show Statistics on List : Here user can view the statistics of all expenses added.
