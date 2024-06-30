@@ -10,7 +10,8 @@ Birkbeck University of London.
 ***
 # Instructions for Using the app 
 ### Test the App 
-- Run the Classes `ApplicationTestInstrumented` and `ExpenseDAOTest` to test the app functionality.
+- Run the Classes `ApplicationTestInstrumented` and `ExpenseDAOTest` that can be found in 
+- app/src/androidTest/java/com/paras_test_android/assignment_paras to test the app functionality.
 ***
 ### Once Tests finish go to the app and execute main app on your virtual device on Android Studio
 - Add expenses with details such as title, amount, date, and category.
