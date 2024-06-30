@@ -14,7 +14,7 @@ object BackButtonHelper {
     fun setupBackButton(activity: Activity, buttonId: Int, destinationActivity: Class<out Activity>) {
         val backButton = activity.findViewById<Button>(buttonId)
         backButton.setOnClickListener {
-            Toast.makeText(activity, "I am going back to Main Menu !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity.getString(R.string.toast_back_to_main), Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, destinationActivity)
             activity.startActivity(intent)
             activity.finish()

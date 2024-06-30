@@ -56,7 +56,7 @@ class ShowStatisticsActivity : AppCompatActivity() {
                     binding.averageAmountPerCategoryValue.text = averageAmounts.joinToString("\n") { "${it.category}: ${it.averageAmount.roundToTwoDecimalPlaces()}" }
                     //binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount} on ${mostRecentExpense.date})"
                     binding.mostRecentExpenseValue.text = "${mostRecentExpense.title} (${mostRecentExpense.amount.roundToTwoDecimalPlaces()} on ${mostRecentExpense.date})"
-                    Toast.makeText(this@ShowStatisticsActivity, "Statistics updated", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ShowStatisticsActivity, getString(R.string.toast_statistics_updated), Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.e("ShowStatisticsActivity", "Error fetching statistics", e)
@@ -64,8 +64,8 @@ class ShowStatisticsActivity : AppCompatActivity() {
                     binding.mostFrequentTitleValue.text = ""
                     binding.mostFrequentCategoryValue.text = ""
                     binding.averageAmountPerCategoryValue.text = ""
-                    binding.mostRecentExpenseValue.text = "Failed to load statistics. Please make sure you have added expenses."
-                    Toast.makeText(this@ShowStatisticsActivity, "Failed to load statistics", Toast.LENGTH_SHORT).show()
+                    binding.mostRecentExpenseValue.text = getString(R.string.toast_statistics_failed)
+                    Toast.makeText(this@ShowStatisticsActivity, getString(R.string.toast_statistics_failed), Toast.LENGTH_SHORT).show()
                 }
             }
         }
