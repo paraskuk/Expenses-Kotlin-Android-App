@@ -2,6 +2,10 @@
 This is a simple budget tracker app for `Android` for the purpose of Mobile Computing Course at 
 Birkbeck University of London. 
 ***
+
+## Clone the Repository
+HTTPS : https://github.com/Birkbeck/mobile-computing-project-2024-paraskuk.git 
+web link in GitHub Classroom :  https://github.com/Birkbeck/mobile-computing-project-2024-paraskuk
 ## Features
 - Add expenses with details such as title, amount, date, and category.
 - Edit existing expenses.
