@@ -7,8 +7,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Application class for the app that populates the database with some data
- * This will allow George to see some data when they run the app right after
- * running the tests
+ * This will allow the user to see some data when they first open the app
  */
 class MyApplication : Application() {
 
