@@ -23,6 +23,7 @@ This is the main view of the App with two main menu options modalities:
 ![img.png](img.png)
 - 1.Menu Options on top left corner
 - 2.Menu Options on center of app
+![img_6_menu.png](img_6_menu.png)
 ***
 - Add Expenses on List : Here user can add expenses one by one.
 ![img_1.png](img_1.png)
@@ -42,6 +43,7 @@ This is the main view of the App with two main menu options modalities:
 ***
 ### Exiting the App 
 - User can exit the app by clicking on the exit button in the top left corner menu
+![img_6_menu.png](img_6_menu.png)
 ***
 
 
