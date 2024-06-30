@@ -33,9 +33,11 @@ This is the main view of the App with two main menu options modalities:
 ![img_2.png](img_2.png)
 ***
 - Edit Expenses on List : Here user will edit the expenses.
-- A user can edit any element of the expense.
-- To erase the expense , user needs to <b> erase all </b> the elements of a <b> specific </b> expense.
-- User can also erase all the expenses on the same screen in one go.
+- The user can Delete All Expenses on the screen by pressing the <b> Delete All </b> button.
+- A user can edit any element of the expense then press save button to save changes.
+- To erase a specific expense , user needs to <b> erase all </b> the elements of a <b> specific </b> expense and then press the save button.
+- User can also erase all the expenses on the same screen in one go manually and then press the save button to save changes.
+- 
 ![img_3.png](img_3.png)
 ***
 - Show Statistics on List : Here user can view the statistics of all expenses added.

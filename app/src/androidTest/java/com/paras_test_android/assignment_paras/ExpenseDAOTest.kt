@@ -80,6 +80,29 @@ class ExpenseDAOTest {
         assertTrue(retrievedExpenses.isEmpty())
     }
 
+
+    /**
+     * Test delete all expenses functionality in the editexpenses activity
+     */
+    @Test
+    fun testDeleteAllExpenses() = runBlocking {
+        val expense1 = ExpenseTable(title = "Groceries", amount = 50.0, date = "12/06/2024", category = "Food")
+        val expense2 = ExpenseTable(title = "Rent", amount = 1200.0, date = "01/06/2024", category = "Housing")
+        dao.insertExpense(listOf(expense1, expense2))
+
+        // Check expenses are in the database
+        val expensesBeforeDelete = dao.getAllExpenses()
+        assertEquals(2, expensesBeforeDelete.size)
+
+        // Delete all expenses with DAO function
+        dao.deleteAllExpenses()
+
+        // Verify all the expenses are deleted from the database
+        val expensesAfterDelete = dao.getAllExpenses()
+        assertTrue(expensesAfterDelete.isEmpty())
+    }
+
+
     /**
      * Test get all expenses in app
      */
