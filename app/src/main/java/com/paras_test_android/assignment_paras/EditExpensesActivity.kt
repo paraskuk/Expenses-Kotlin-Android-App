@@ -11,6 +11,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.appcompat.app.AlertDialog
+
+
 
 /**
  * Class that edits expenses activity when using the main menu on upper left corner of the app
@@ -39,6 +42,11 @@ class EditExpensesActivity : AppCompatActivity() {
             // Save button listener
             binding.saveButton.setOnClickListener {
                 saveExpenses()
+            }
+
+            // DeleteAll button listener for the edit expense activity
+            binding.deleteAllButton.setOnClickListener {
+                showDeleteAllConfirmationDialog()
             }
 
             // Set up the back button using BackButtonHelper class
@@ -132,4 +140,36 @@ class EditExpensesActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    /**
+     * Function that shows a confirmation dialog before deleting all expenses in editexpenses activity.
+     *
+     */
+    private fun showDeleteAllConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Delete All Expenses")
+        builder.setMessage("REALLY delete ALL expenses in Room Database?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            deleteAllExpenses()
+        }
+        builder.setNegativeButton("No", null)
+        builder.show()
+    }
+
+
+    /**
+     * Function that deletes all expenses from the Room database with delete all button.
+     */
+    private fun deleteAllExpenses() {
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDatabase.getDatabase(application).expenseDao().deleteAllExpenses()
+            withContext(Dispatchers.Main) {
+                expensesAdapter.updateExpenses(emptyList())
+                Toast.makeText(this@EditExpensesActivity, getString(R.string.toast_statistics_deleted), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
 }

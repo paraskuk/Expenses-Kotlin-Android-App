@@ -25,7 +25,7 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
 
             override fun matchesSafely(view: RecyclerView): Boolean {
                 val viewHolder = view.findViewHolderForAdapterPosition(position)
-                    ?: // has no item on such position
+                    ?:
                     return false
                 val targetView = viewHolder.itemView.findViewById<View>(targetViewId)
                 return targetView != null && targetView is EditText && targetView.visibility == View.VISIBLE && targetView.getGlobalVisibleRect(
