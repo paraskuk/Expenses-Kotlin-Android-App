@@ -6,6 +6,10 @@ Birkbeck University of London.
 ## Clone the Repository
 - HTTPS : https://github.com/Birkbeck/mobile-computing-project-2024-paraskuk.git 
 - Web link in GitHub Classroom :  https://github.com/Birkbeck/mobile-computing-project-2024-paraskuk
+***
+## Running Device
+- Android Studio Emulator was used to run the app with model Launching 'Pixel Fold API 33'.
+***
 ## Features
 - Add expenses with details such as title, amount, date, and category.
 - Edit existing expenses.
