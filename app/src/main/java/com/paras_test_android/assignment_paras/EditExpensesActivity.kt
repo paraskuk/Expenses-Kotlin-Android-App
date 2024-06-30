@@ -82,7 +82,7 @@ class EditExpensesActivity : AppCompatActivity() {
 
     /**
      * Function that handles the back button press and goes back to the main activity.
-     * deprecated in api 29 version
+     *
      */
     override fun onBackPressed() {
         super.onBackPressed()
