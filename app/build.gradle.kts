@@ -8,10 +8,6 @@ android {
     namespace = "com.paras_test_android.assignment_paras"
     compileSdk = 34
 
-//    testOptions {
-//        animationsDisabled = true
-//    }
-
 
     defaultConfig {
         applicationId = "com.paras_test_android.assignment_paras"
@@ -86,6 +82,8 @@ dependencies {
     //implementation "androidx.room:room-ktx:$room_version"
     // Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
+    //ui automator for the tests
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
 
 
 }

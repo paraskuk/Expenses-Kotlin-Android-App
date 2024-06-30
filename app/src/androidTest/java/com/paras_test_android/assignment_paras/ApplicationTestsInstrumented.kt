@@ -2,6 +2,7 @@ package com.paras_test_android.assignment_paras
 
 import android.content.Context
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,9 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.junit.*
 import org.junit.runner.RunWith
+import android.provider.Settings
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 
 /**
  * Instrumented test for app menu
@@ -53,6 +57,7 @@ class ApplicationTestsInstrumented {
     fun unregisterIdlingResource() {
         IdlingRegistry.getInstance().unregister(idlingResource)
     }
+
 
     /**
      * Create an instance of the database before test
@@ -145,10 +150,10 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.addExpensesButton)).perform(click())
 
         // Enter expense elements
-        onView(withId(R.id.titleInput)).perform(typeText("Test Expense"), closeSoftKeyboard())
+        onView(withId(R.id.titleInput)).perform(typeText("TurinExpense"), closeSoftKeyboard())
         onView(withId(R.id.amountInput)).perform(typeText("987.0"), closeSoftKeyboard())
         onView(withId(R.id.dateInput)).perform(typeText("01/01/2024"), closeSoftKeyboard())
-        onView(withId(R.id.categoryInput)).perform(typeText("Test Cat"), closeSoftKeyboard())
+        onView(withId(R.id.categoryInput)).perform(typeText("Travel"), closeSoftKeyboard())
 
         // Click "Submit Expense"
         onView(withId(R.id.submitExpenseButton)).perform(click())
@@ -168,7 +173,7 @@ class ApplicationTestsInstrumented {
         onView(withId(R.id.expensesRecyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(expenseCount - 1))
 
         // Check for added expense existence
-        onView(allOf(withId(R.id.titleTextView), withText("Test Expense"))).check(matches(isDisplayed()))
+        onView(allOf(withId(R.id.titleTextView), withText("TurinExpense"))).check(matches(isDisplayed()))
     }
 
     /**
@@ -246,6 +251,8 @@ class ApplicationTestsInstrumented {
     fun closeDb() {
         db_1.close()
     }
+
+
 
     // Helper function to match view in RecyclerView
     private fun withRecyclerView(recyclerViewId: Int): RecyclerViewMatcher {
