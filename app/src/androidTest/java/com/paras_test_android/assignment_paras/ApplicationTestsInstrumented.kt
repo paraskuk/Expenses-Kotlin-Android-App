@@ -76,10 +76,30 @@ class ApplicationTestsInstrumented {
             expenseDao.deleteAllExpenses()
 
             // Insert data to make sure the database is not empty
-            val expense1 = ExpenseTable(title = "Cinema Ticket Other", amount = 10.0, date = "01/01/2024", category = "Relax")
-            val expense2 = ExpenseTable(title = "Chips", amount = 20.0, date = "02/01/2024", category = "Groceries")
-            val expense3 = ExpenseTable(title = "Burger", amount = 30.0, date = "03/01/2024", category = "Food")
-            val expense4 = ExpenseTable(title = "Cinema Ticket Odeon", amount = 60.0, date = "04/01/2024", category = "Relax")
+            val expense1 = ExpenseTable(
+                title = "Cinema Ticket Other",
+                amount = 10.0,
+                date = "01/01/2024",
+                category = "Relax"
+            )
+            val expense2 = ExpenseTable(
+                title = "Chips",
+                amount = 20.0,
+                date = "02/01/2024",
+                category = "Groceries"
+            )
+            val expense3 = ExpenseTable(
+                title = "Burger",
+                amount = 30.0,
+                date = "03/01/2024",
+                category = "Food"
+            )
+            val expense4 = ExpenseTable(
+                title = "Cinema Ticket Odeon",
+                amount = 60.0,
+                date = "04/01/2024",
+                category = "Relax"
+            )
 
             expenseDao.insertExpenses(listOf(expense1, expense2, expense3, expense4))
         }
@@ -91,10 +111,26 @@ class ApplicationTestsInstrumented {
     @After
     fun populateDb() = runBlocking {
         // Insert data to populate the database after end of tests
-        val expense1 = ExpenseTable(title = "Cinema Ticket Other", amount = 10.0, date = "01/01/2024", category = "Relax")
-        val expense2 = ExpenseTable(title = "Chips", amount = 20.0, date = "02/01/2024", category = "Groceries")
-        val expense3 = ExpenseTable(title = "Burger", amount = 30.0, date = "03/01/2024", category = "Food")
-        val expense4 = ExpenseTable(title = "Cinema Ticket Odeon", amount = 60.0, date = "04/01/2024", category = "Relax")
+        val expense1 = ExpenseTable(
+            title = "Cinema Ticket Other",
+            amount = 10.0,
+            date = "01/01/2024",
+            category = "Relax"
+        )
+        val expense2 = ExpenseTable(
+            title = "Chips",
+            amount = 20.0,
+            date = "02/01/2024",
+            category = "Groceries"
+        )
+        val expense3 =
+            ExpenseTable(title = "Burger", amount = 30.0, date = "03/01/2024", category = "Food")
+        val expense4 = ExpenseTable(
+            title = "Cinema Ticket Odeon",
+            amount = 60.0,
+            date = "04/01/2024",
+            category = "Relax"
+        )
 
         expenseDao.insertExpenses(listOf(expense1, expense2, expense3, expense4))
     }
@@ -170,78 +206,42 @@ class ApplicationTestsInstrumented {
         }
 
         // Scroll to the expense position
-        onView(withId(R.id.expensesRecyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(expenseCount - 1))
+        onView(withId(R.id.expensesRecyclerView)).perform(
+            scrollToPosition<RecyclerView.ViewHolder>(
+                expenseCount - 1
+            )
+        )
 
         // Check for added expense existence
-        onView(allOf(withId(R.id.titleTextView), withText("TurinExpense"))).check(matches(isDisplayed()))
+        onView(allOf(withId(R.id.titleTextView), withText("TurinExpense"))).check(
+            matches(
+                isDisplayed()
+            )
+        )
     }
 
     /**
-     * Test the functionality of deleting an expense
+     * Test the Delete All expenses functionality via the button in the Editexpenses activity
      */
-//    @Test
-//    fun testDeleteExpense() {
-//        ActivityScenario.launch(MainActivity::class.java)
-//
-//        // Click "Edit Expenses" to do the test
-//        onView(withId(R.id.editExpensesButton)).perform(click())
-//
-//        // Get the number of items in the RecyclerView to use for the test
-//        val expenseCount = runBlocking {
-//            expenseDao.getAllExpenses().size
-//        }
-//
-//        // Ensure there are expenses to delete
-//        if (expenseCount > 0) {
-//            // Scroll to the expense position
-//            onView(withId(R.id.editExpensesRecyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(0))
-//
-//            // Clear the fields of the first expense- this is not working
-//            onView(withRecyclerView(R.id.editExpensesRecyclerView).atPositionOnView(0, R.id.titleEditText))
-//                .check(matches(isDisplayed()))
-//                .perform(clearText(), closeSoftKeyboard())
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            onView(withRecyclerView(R.id.editExpensesRecyclerView).atPositionOnView(0, R.id.amountEditText))
-//                .check(matches(isDisplayed()))
-//                .perform(clearText(), closeSoftKeyboard())
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            onView(withRecyclerView(R.id.editExpensesRecyclerView).atPositionOnView(0, R.id.dateEditText))
-//                .check(matches(isDisplayed()))
-//                .perform(clearText(), closeSoftKeyboard())
-//
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            onView(withRecyclerView(R.id.editExpensesRecyclerView).atPositionOnView(0, R.id.categoryEditText))
-//                .check(matches(isDisplayed()))
-//                .perform(clearText(), closeSoftKeyboard())
-//
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            // Click "Save"
-//            onView(withId(R.id.saveButton)).perform(click())
-//
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            // Navigate to show expenses
-//            onView(withId(R.id.showExpensesButton)).perform(click())
-//
-//            // Add a short delay
-//            Thread.sleep(1000)
-//
-//            // Check for deleted expense absence - this doesnt work
-//            onView(allOf(withId(R.id.titleTextView), withText("Cinema Ticket Other"))).check(doesNotExist())
-//        }
-//    }
+    @Test
+    fun testDeleteAllExpenses() {
+        ActivityScenario.launch(MainActivity::class.java)
 
+        //  go to the EditExpensesActivity
+        onView(withId(R.id.editExpensesButton)).perform(click())
 
+        // Click the "Delete All"  button to delete all expenses
+        onView(withId(R.id.deleteAllButton)).perform(click())
 
+        // Confirm the deletion
+        onView(withText("Yes")).perform(click())
+
+        // allow for the deletion process to register in the ssytem
+        Thread.sleep(1000)
+
+        // check if expenses are deleted
+        onView(withId(R.id.editExpensesRecyclerView)).check(matches(hasChildCount(0)))
+    }
 
 
     /**
@@ -251,7 +251,6 @@ class ApplicationTestsInstrumented {
     fun closeDb() {
         db_1.close()
     }
-
 
 
     // Helper function to match view in RecyclerView
