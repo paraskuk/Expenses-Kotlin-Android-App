@@ -21,8 +21,8 @@ Birkbeck University of London.
 ## App Menu
 This is the main view of the App with two main menu options modalities:
 ![img.png](img.png)
-- 1.Menu Options on top left corner
-- 2.Menu Options on center of app
+- 1.Menu Options on top left corner as shown just above.
+- 2.Menu Options on center of app as shown below
 ![img_6_menu.png](img_6_menu.png)
 ***
 - Add Expenses on List : Here user can add expenses one by one.
