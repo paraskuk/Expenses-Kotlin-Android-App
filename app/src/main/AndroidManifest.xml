@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,35 +13,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment_paras"
         tools:targetApi="31">
-        <!--Main activity-->
+        <!-- Main activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- AddExpensesActivity  -->
+        <!-- Other activities -->
         <activity
             android:name=".AddExpensesActivity"
-            android:label="Add Expense"> <!-- label for  add activity -->
+            android:label="Add Expense">
         </activity>
-        <!-- ShowExpensesActivity  -->
         <activity
             android:name=".ShowExpensesActivity"
-            android:label="Show all Expenses"> <!-- label for show expense activity -->
+            android:label="Show all Expenses">
         </activity>
         <activity
             android:name=".EditExpensesActivity"
-            android:label="Edit Expenses"> <!-- label for show expense activity -->
+            android:label="Edit Expenses">
         </activity>
         <activity
             android:name=".ShowStatisticsActivity"
-            android:label="Show Statistics on Expenses"> <!-- statistics activity -->
+            android:label="Show Statistics on Expenses">
         </activity>
-
     </application>
-
 </manifest>
