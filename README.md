@@ -1,6 +1,5 @@
 # Budget Tracker Android App
-This is a simple budget tracker app for `Android` for the purpose of Mobile Computing Course at 
-Birkbeck University of London. 
+This is a simple budget tracker app for `Android`.
 ***
 ## Running Device
 - Android Studio Emulator was used to run the app with model Launching 'Pixel Fold API 33'.
